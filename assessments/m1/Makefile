@@ -28,11 +28,12 @@ $(TARGET): $(OBJECTS)
 # Pattern rule for all tests - automatically generates a rule for each test file
 $(TESTS): %: stats.c tests/%.c
 	$(CC) $(CFLAGS) -o $@ stats.c tests/$@.c $(LDFLAGS)
-# 	-./$@
+# enable the following line to run tests immediately after building
+# 	-./$@ 
 
 # Run all tests
 test: $(TESTS)
-	@echo "All tests generated! Run individual tests by executing their names."
+	@echo "All tests generated! Run individual tests by executing their names." 
 
 # Clean build artifacts
 clean:
