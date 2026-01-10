@@ -9,13 +9,13 @@
  *
  *****************************************************************************/
 /**
- * @file <Add File Name> 
- * @brief <Add Brief Description Here >
+ * @file stats.c
+ * @brief implementation file for stats.h
  *
- * <Add Extended Description Here>
+ * Assignment 1 - Statistics and Sorting
  *
- * @author <Add FirsName LastName>
- * @date <Add date >
+ * @author Jonathon Hinchley
+ * @date January 10, 2026
  *
  */
 
@@ -27,7 +27,7 @@
 /* Size of the Data Set */
 #define SIZE (40)
 
-void main() {
+int main () {
 
   unsigned char test[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
                               114, 88,   45,  76, 123,  87,  25,  23,
@@ -40,4 +40,31 @@ void main() {
 
 }
 
+void print_statistics(unsigned char *data, unsigned int length) {
+}
+
+void print_array(unsigned char *data, unsigned int length) {
+}
+
+unsigned char find_median(unsigned char *data, unsigned int length) {
+    return 0;
+}
+
+unsigned char find_mean(unsigned char *data, unsigned int length) {
+    return 0;
+}
+
+unsigned char find_maximum(unsigned char *data, unsigned int length) {
+    return 0;
+}
+
+unsigned char find_minimum(unsigned char *data, unsigned int length) {
+    return 0;
+}
+
+unsigned char* sort_array(unsigned char *data, unsigned int length) {
+    return data;
+}
+
 /* Add other Implementation File Code Here */
+
