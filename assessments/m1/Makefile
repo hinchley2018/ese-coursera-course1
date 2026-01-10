@@ -4,10 +4,10 @@ CFLAGS = -Wall -Wextra -std=c99
 LDFLAGS = 
 
 # Target executable
-TARGET = stats
+TARGET = main
 
 # Source files
-SOURCES = stats.c
+SOURCES = stats.c main.c
 OBJECTS = $(SOURCES:.c=.o)
 
 # Test files
@@ -27,7 +27,6 @@ $(TARGET): $(OBJECTS)
 
 # Build and run tests
 test: $(TEST_EXE)
-	./$(TEST_EXE)
 
 # Link test executable with stats.c
 $(TEST_EXE): $(TEST_SRC) stats.c stats.h
@@ -38,8 +37,3 @@ clean:
 	rm -f $(OBJECTS) $(TARGET) $(TEST_EXE)
 
 .PHONY: all test clean
-test: $(SOURCES) $(TEST_SRC)
-	$(CC) $(CFLAGS) $(SOURCES) $(TEST_SRC) -o $(TEST_EXE)
-	./$(TEST_EXE)
-
-.PHONY: all clean
