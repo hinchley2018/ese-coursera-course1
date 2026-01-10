@@ -10,9 +10,9 @@ TARGET = main
 SOURCES = stats.c main.c
 OBJECTS = $(SOURCES:.c=.o)
 
-# Test files
-TEST_SRC = tests/test_stats.c
-TEST_EXE = test_stats
+# Test files - automatically discover all test_*.c files
+TEST_SOURCES = $(wildcard tests/test_*.c)
+TESTS = $(basename $(notdir $(TEST_SOURCES)))
 
 # Default target
 all: $(TARGET)
@@ -25,15 +25,17 @@ $(TARGET): $(OBJECTS)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Build and run tests
-test: $(TEST_EXE)
+# Pattern rule for all tests - automatically generates a rule for each test file
+$(TESTS): %: stats.c tests/%.c
+	$(CC) $(CFLAGS) -o $@ stats.c tests/$@.c $(LDFLAGS)
+# 	-./$@
 
-# Link test executable with stats.c
-$(TEST_EXE): $(TEST_SRC) stats.c stats.h
-	$(CC) $(CFLAGS) -o $(TEST_EXE) $(TEST_SRC) stats.c $(LDFLAGS)
+# Run all tests
+test: $(TESTS)
+	@echo "All tests generated! Run individual tests by executing their names."
 
 # Clean build artifacts
 clean:
-	rm -f $(OBJECTS) $(TARGET) $(TEST_EXE)
+	rm -f $(OBJECTS) $(TARGET) $(TESTS)
 
-.PHONY: all test clean
+.PHONY: all test $(TESTS) clean

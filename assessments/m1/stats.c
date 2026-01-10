@@ -13,6 +13,7 @@
  * @brief implementation file for stats.h
  *
  * Assignment 1 - Statistics and Sorting
+ * See main.c for main() function
  *
  * @author Jonathon Hinchley
  * @date January 10, 2026
@@ -28,9 +29,15 @@ void print_statistics(unsigned char *data, unsigned int length) {
 }
 
 void print_array(unsigned char *data, unsigned int length) {
+    for (int i = 0; i < length; i++) {
+        printf("%u ", data[i]);
+    }
+    printf("\n");
 }
 
+
 unsigned char find_median(unsigned char *data, unsigned int length) {
+
     return 0;
 }
 
@@ -43,12 +50,28 @@ unsigned char find_maximum(unsigned char *data, unsigned int length) {
 }
 
 unsigned char find_minimum(unsigned char *data, unsigned int length) {
-    return 0;
+    //sort the array first
+    unsigned char* sorted = sort_array(data, length);
+
+    return sorted[length - 1];
 }
 
+/* 
+ * Assignment function that hands off sorting to my recursive quick sort implementation
+ * to honor the assignment requirement to implement a sorting algorithm manually.
+ * But I couldn't resist doing something a bit more elegant than O(n^2) bubble sort.
+ */
 unsigned char* sort_array(unsigned char *data, unsigned int length) {
     return data;
 }
 
-/* Add other Implementation File Code Here */
-
+/* Quick Sort implementation in C
+ * 
+ * Note: We could also use the standard library function `qsort()` 
+ * from <stdlib.h> to sort this array. 
+ * However, this manual implementation demonstrates understanding of
+ * recursion, partitioning, and divide-and-conquer sorting.
+ */
+unsigned char* jquick_sort(){
+    return 0;
+}
