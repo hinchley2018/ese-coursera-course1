@@ -21,6 +21,8 @@
 #ifndef __STATS_H__
 #define __STATS_H__
 
+#include <stddef.h>
+
 /**
  * @brief A function that prints the statistics of an array including minimum, maximum, mean, and median.
  *
@@ -98,5 +100,41 @@ unsigned char find_minimum(unsigned char *data, unsigned int length);
  * @return array sorted from largest to smallest
  */
 unsigned char* sort_array(unsigned char *data, unsigned int length);
+
+/**
+* @brief Comparison function for ascending order
+* If a should be placed before b, compare function should
+* return positive value, if it should be placed after b,
+* it should return negative value. Returns 0 otherwise
+* 
+* 
+* @param a pointer to first element
+* @param b pointer to second element
+* @return integer indicating order
+*/
+int compare_asc(const void* a, const void* b);
+
+/** 
+* @brief Comparison function for descending order
+* If a should be placed before b, compare function should
+* return negative value, if it should be placed after b,
+* it should return positive value. Returns 0 otherwise
+*    
+*
+* @param a pointer to first element
+* @param b pointer to second element
+* @return integer indicating order 
+*/
+int compare_desc(const void* a, const void* b);
+
+/**
+* @brief Quick Sort implementation in C
+* @param data pointer to array to sort
+* @param length number of elements in array
+* @param size size of each element
+* @param compare pointer to comparison function
+* @return pointer to sorted array
+*/
+unsigned char* jquick_sort(unsigned char *data, unsigned int length, size_t size, int (*compare)(const void*, const void*));
 
 #endif /* __STATS_H__ */

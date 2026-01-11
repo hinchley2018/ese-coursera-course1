@@ -63,7 +63,7 @@ unsigned char find_minimum(unsigned char *data, unsigned int length) {
  */
 unsigned char* sort_array(unsigned char *data, unsigned int length) {
     //call quick sort
-    unsigned char* sorted = jquick_sort(data, length, sizeof(char), compare);
+    unsigned char* sorted = jquick_sort(data, length, sizeof(char), compare_desc);
     return sorted;
 }
 
@@ -72,8 +72,23 @@ unsigned char* sort_array(unsigned char *data, unsigned int length) {
 * return positive value, if it should be placed after b,
 * it should return negative value. Returns 0 otherwise
 */
-int compare(const void* a, const void* b) {
-    return (*(int*)a - *(int*)b);
+int compare_asc(const void* a, const void* b) {
+    int int_a = *(int*)a;
+    int int_b = *(int*)b;
+    // ascending a > b => positive a < b => negative
+    return int_a - int_b; 
+}
+
+/* 
+* If a should be placed before b, compare function should
+* return negative value, if it should be placed after b,
+* it should return positive value. Returns 0 otherwise (same number)
+*/
+int compare_desc(const void* a, const void* b) {
+    int int_a = *(int*)a;
+    int int_b = *(int*)b;
+    // descending b > a => positive b < a => negative
+    return int_b - int_a; 
 }
 
 /* Quick Sort implementation in C
@@ -84,5 +99,5 @@ int compare(const void* a, const void* b) {
  * recursion, partitioning, and divide-and-conquer sorting.
  */
 unsigned char* jquick_sort(unsigned char *data, unsigned int length, size_t size, int (*compare)(const void*, const void*)) {
-    return 0;
+    return data; //placeholder
 }
