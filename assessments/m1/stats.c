@@ -106,6 +106,8 @@ int compare_desc(const void* a, const void* b) {
  * I choose array indexing to avoid pointer math
  */
 unsigned char* jquick_sort(unsigned char *data, int low, int high, int (*compare)(const void*, const void*)) {
-    
+    //TODO: define partition function
+    int pivot_index = 0;//placeholder
+    //TODO: compare low and high 
     return data; //placeholder
 }
