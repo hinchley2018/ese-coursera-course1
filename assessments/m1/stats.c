@@ -99,5 +99,9 @@ int compare_desc(const void* a, const void* b) {
  * recursion, partitioning, and divide-and-conquer sorting.
  */
 unsigned char* jquick_sort(unsigned char *data, unsigned int length, size_t size, int (*compare)(const void*, const void*)) {
+    //base case: arrays with 0 or 1 element are already sorted
+    if (length < 2) {
+        return data; 
+    }
     return data; //placeholder
 }

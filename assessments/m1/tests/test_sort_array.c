@@ -17,6 +17,11 @@ void test_sort_array(unsigned char *test_array, unsigned int array_length, unsig
 
 int main(void) {
     /* Test data */
+    unsigned char test_array_0[] = {};
+    unsigned int array_length_0 = 0;
+    unsigned char sorted_expected_0[] = {};
+    test_sort_array(test_array_0, array_length_0, sorted_expected_0, "{}");
+
     unsigned char test_array_1[] = {2};
     unsigned int array_length_1 = 1;
     unsigned char sorted_expected_1[] = {2};
