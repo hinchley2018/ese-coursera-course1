@@ -130,11 +130,11 @@ int compare_desc(const void* a, const void* b);
 /**
 * @brief Quick Sort implementation in C
 * @param data pointer to array to sort
-* @param length number of elements in array
-* @param size size of each element
+* @param low low index
+* @param high high index
 * @param compare pointer to comparison function
 * @return pointer to sorted array
 */
-unsigned char* jquick_sort(unsigned char *data, unsigned int length, size_t size, int (*compare)(const void*, const void*));
+unsigned char* jquick_sort(unsigned char *data, int low, int high, int (*compare)(const void*, const void*));
 
 #endif /* __STATS_H__ */

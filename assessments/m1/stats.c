@@ -62,8 +62,14 @@ unsigned char find_minimum(unsigned char *data, unsigned int length) {
  * But I couldn't resist doing something a bit more elegant than O(n^2) bubble sort.
  */
 unsigned char* sort_array(unsigned char *data, unsigned int length) {
-    //call quick sort
-    unsigned char* sorted = jquick_sort(data, length, sizeof(char), compare_desc);
+    //base case: arrays with 0 or 1 element are already sorted
+    if (length < 2) {
+        return data; 
+    }
+    //call quick sort, descending order
+    int low = 0;
+    int high = length - 1;
+    unsigned char* sorted = jquick_sort(data, low, high, compare_desc);
     return sorted;
 }
 
@@ -96,12 +102,10 @@ int compare_desc(const void* a, const void* b) {
  * Note: We could also use the standard library function `qsort()` 
  * from <stdlib.h> to sort this array. 
  * However, this manual implementation demonstrates understanding of
- * recursion, partitioning, and divide-and-conquer sorting.
+ * recursion, partitioning, and divide-and-conquer sorting. 
+ * I choose array indexing to avoid pointer math
  */
-unsigned char* jquick_sort(unsigned char *data, unsigned int length, size_t size, int (*compare)(const void*, const void*)) {
-    //base case: arrays with 0 or 1 element are already sorted
-    if (length < 2) {
-        return data; 
-    }
+unsigned char* jquick_sort(unsigned char *data, int low, int high, int (*compare)(const void*, const void*)) {
+    
     return data; //placeholder
 }
