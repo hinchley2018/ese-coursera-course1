@@ -41,8 +41,21 @@ unsigned char find_median(unsigned char *data, unsigned int length) {
     return 0;
 }
 
+/*
+The mathematically correct mean is fractional, 
+but returning unsigned char models constrained systems where FPU may not be available and 
+requires explicit handling of overflow and rounding.
+ */
 unsigned char find_mean(unsigned char *data, unsigned int length) {
-    return 0;
+
+    //sum all elements using int to avoid overflow
+    unsigned int sum = 0;
+    for (unsigned int i = 0; i < length; i++) {
+        sum += data[i];
+    }
+    //calculate mean
+    unsigned char mean = (unsigned char)(sum / length); //integer division truncates fractional part
+    return mean;
 }
 
 unsigned char find_maximum(unsigned char *data, unsigned int length) {
