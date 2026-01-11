@@ -53,9 +53,8 @@ unsigned char find_mean(unsigned char *data, unsigned int length) {
     for (unsigned int i = 0; i < length; i++) {
         sum += data[i];
     }
-    //calculate mean
-    //integer division truncates fractional part
-    //cast back to unsigned char
+    //calculate mean integer division truncates fractional part automatically
+    //then cast back to unsigned char to meet assignment spec
     unsigned char mean = (unsigned char)(sum / length); 
     return mean;
 }
