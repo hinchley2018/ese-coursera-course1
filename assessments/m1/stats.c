@@ -50,10 +50,17 @@ unsigned char find_maximum(unsigned char *data, unsigned int length) {
 }
 
 unsigned char find_minimum(unsigned char *data, unsigned int length) {
-    //sort the array first
-    unsigned char* sorted = sort_array(data, length);
+    //TODO: sort array and return last element
+    char min = data[0];
+    //O(n) linear search
+    for (unsigned int i = 1; i < length; i++) {
+        //replace min if current element is smaller
+        if (data[i] < min) {
+            min = data[i];
+        }
+    }
 
-    return sorted[length - 1];
+    return min;
 }
 
 /* 
