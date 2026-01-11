@@ -3,20 +3,37 @@
 #include <stdio.h>
 
 /* Test data */
-unsigned char test_array[] = {34, 201, 190, 154, 8, 194, 2, 4, 45, 88, 
-                              76, 123, 99, 56, 233, 212, 34, 57, 165, 142};
-unsigned int array_length = 20;
 
-void test_find_maximum(void) {
-    printf("=== Testing find_maximum ===\n");
+
+void test_find_maximum(unsigned char *test_array, unsigned int array_length, unsigned char expected, char* test_name) {
+    printf("testing %s\n", test_name);
     unsigned char max_val = find_maximum(test_array, array_length);
-    printf("Maximum: %u (expected 233)\n", max_val);
-    assert(max_val == 233);
-    printf("find_maximum test passed\n\n");
+    printf("Maximum: %u (expected %u)\n", max_val, expected);
+    assert(max_val == expected);
 }
 
 int main(void) {
-    test_find_maximum();
+
+    unsigned char test_array_1[] = {2};
+    unsigned int array_length_1 = 1;
+    char expected_max_1 = 2;
+    test_find_maximum(test_array_1, array_length_1, expected_max_1, "{2}");
+
+    unsigned char test_array_2[] = {34, 201, 190};
+    unsigned int array_length_2 = 3;
+    char expected_max_2 = 201;
+    test_find_maximum(test_array_2, array_length_2, expected_max_2, "{34,201,190}");
+
+    unsigned char test_array_3[] = {201, 201, 201};
+    unsigned int array_length_3 = 3;
+    char expected_max_3 = 201;
+    test_find_maximum(test_array_3, array_length_3, expected_max_3, "{201,201,201}");
+
+    unsigned char test_array_4[] = {34, 201, 190, 154, 8, 194, 2, 4, 45, 88, 
+                                    76, 123, 99, 56, 233, 212, 34, 57, 165, 142};
+    unsigned int array_length_4 = 20;
+    char expected_max_4 = 233;
+    test_find_maximum(test_array_4, array_length_4, expected_max_4, "{34,201,190,154,8,194,2,4,45,88,76,123,99,56,233,212,34,57,165,142}");
     printf("All tests passed!\n");
     return 0;
 }

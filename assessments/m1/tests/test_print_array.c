@@ -1,7 +1,9 @@
 #include <assert.h>
 #include "../stats.h"
 #include <stdio.h>
-
+//I didn't truly test print_array since it just prints to console
+//but I can at least run it to see if it crashes or not
+// a true unit test would require capturing stdout which is overkill here
 void test_print_array(unsigned char *test_array, unsigned int array_length, char* test_name) {
     print_array(test_array, array_length);
 }

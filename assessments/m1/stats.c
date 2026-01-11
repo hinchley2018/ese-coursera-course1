@@ -46,15 +46,26 @@ unsigned char find_mean(unsigned char *data, unsigned int length) {
 }
 
 unsigned char find_maximum(unsigned char *data, unsigned int length) {
-    return 0;
+    //assume first element is max
+    unsigned char max = data[0]; //34
+    //O(n) linear search
+    for (unsigned int i = 1; i < length; i++) {
+        //replace max if current element is larger
+        // printf("Checking data[%u] = %u against current max %u\n", i, data[i], max);
+        if (data[i] > max) {//201 > 34 
+            max = data[i];//201
+        }
+    }
+    return max;
 }
 
 unsigned char find_minimum(unsigned char *data, unsigned int length) {
-    //TODO: sort array and return last element
-    char min = data[0];
+    //assume first element is min
+    unsigned char min = data[0];
     //O(n) linear search
     for (unsigned int i = 1; i < length; i++) {
         //replace min if current element is smaller
+        // printf("Checking data[%u] = %u against current min %u\n", i, data[i], min);
         if (data[i] < min) {
             min = data[i];
         }
