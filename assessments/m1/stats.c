@@ -26,19 +26,43 @@
 #include "stats.h"
 
 void print_statistics(unsigned char *data, unsigned int length) {
+    unsigned char min = find_minimum(data, length);
+    unsigned char max = find_maximum(data, length);
+    unsigned char mean = find_mean(data, length);
+    unsigned char median = find_median(data, length);
+
+    printf("Statistics:\n");
+    printf("Minimum: %u\n", min);
+    printf("Maximum: %u\n", max);
+    printf("Mean: %u\n", mean);
+    printf("Median: %u\n", median);
 }
 
 void print_array(unsigned char *data, unsigned int length) {
-    for (int i = 0; i < length; i++) {
+    for (unsigned int i = 0; i < length; i++) {
         printf("%u ", data[i]);
     }
     printf("\n");
 }
 
-
+/*
+    * Median requires sorting the array first
+    * For simplicity, this function makes a copy of the array,
+    * again due to embedded constraints malloc and free are avoided to avoid fragmentation.
+    * but this leads to O(n) space complexity.
+*/
 unsigned char find_median(unsigned char *data, unsigned int length) {
 
-    return 0;
+    //create copy of array to sort
+    unsigned char data_copy[length];
+    for (unsigned int i = 0; i < length; i++) {
+        data_copy[i] = data[i];
+    }
+    //sort the copy in ascending order using my quick sort
+    qsort(data_copy, length, sizeof(unsigned char), compare_asc);
+    //find median
+    unsigned int median_index = length / 2;
+    return data_copy[median_index];
 }
 
 /*
@@ -98,11 +122,9 @@ unsigned char* sort_array(unsigned char *data, unsigned int length) {
     if (length < 2) {
         return data; 
     }
-    //call quick sort, descending order
-    int low = 0;
-    int high = length - 1;
-    unsigned char* sorted = jquick_sort(data, low, high, compare_desc);
-    return sorted;
+
+    qsort(data, length, sizeof(unsigned char), compare_desc);
+    return data;
 }
 
 /* 
@@ -111,8 +133,8 @@ unsigned char* sort_array(unsigned char *data, unsigned int length) {
 * it should return negative value. Returns 0 otherwise
 */
 int compare_asc(const void* a, const void* b) {
-    int int_a = *(int*)a;
-    int int_b = *(int*)b;
+    unsigned char int_a = *(unsigned char*)a;
+    unsigned char int_b = *(unsigned char*)b;
     // ascending a > b => positive a < b => negative
     return int_a - int_b; 
 }
@@ -123,23 +145,8 @@ int compare_asc(const void* a, const void* b) {
 * it should return positive value. Returns 0 otherwise (same number)
 */
 int compare_desc(const void* a, const void* b) {
-    int int_a = *(int*)a;
-    int int_b = *(int*)b;
+    unsigned char int_a = *(unsigned char*)a;
+    unsigned char int_b = *(unsigned char*)b;
     // descending b > a => positive b < a => negative
     return int_b - int_a; 
-}
-
-/* Quick Sort implementation in C
- * 
- * Note: We could also use the standard library function `qsort()` 
- * from <stdlib.h> to sort this array. 
- * However, this manual implementation demonstrates understanding of
- * recursion, partitioning, and divide-and-conquer sorting. 
- * I choose array indexing to avoid pointer math
- */
-unsigned char* jquick_sort(unsigned char *data, int low, int high, int (*compare)(const void*, const void*)) {
-    //TODO: define partition function
-    int pivot_index = 0;//placeholder
-    //TODO: compare low and high 
-    return data; //placeholder
 }

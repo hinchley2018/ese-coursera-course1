@@ -5,6 +5,7 @@
 //but I can at least run it to see if it crashes or not
 // a true unit test would require capturing stdout which is overkill here
 void test_print_array(unsigned char *test_array, unsigned int array_length, char* test_name) {
+    printf("Running test: %s\n", test_name);
     print_array(test_array, array_length);
 }
 

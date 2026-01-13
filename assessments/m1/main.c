@@ -17,18 +17,10 @@ int main () {
   printf("Original Array:\n");
   print_array(test, SIZE);
   
-  /* Print statistics */
-  printf("\n");
-  print_statistics(test, SIZE);
-  
   /* Sort the array */
   printf("\nSorted Array (largest to smallest):\n");
   unsigned char *sorted = sort_array(test, SIZE);
   print_array(sorted, SIZE);
-
-  // Since I in the real world I'd avoid some additional operations since array would be sorted
-  // sorted[0] and sorted[SIZE-1] would give min/max directly
-  // but for this assignment I'll call them as-is to demonstrate functionality
 
   /* Individual function calls */
   printf("\nIndividual function results:\n");
@@ -36,6 +28,10 @@ int main () {
   printf("Maximum: %u\n", find_maximum(test, SIZE));
   printf("Mean: %u\n", find_mean(test, SIZE));
   printf("Median: %u\n", find_median(test, SIZE));
+
+  /* Print statistics */
+  printf("\n");
+  print_statistics(test, SIZE);
   
   
   return 0;
